@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ninja Gold</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+
+		h1{
+			margin-left: 40%;
+			margin-top: 20px;
+			color: red;
+		}
+		.row{
+			margin-left: 90px;
+		}
+		.col-3-md{
+			border: black solid 4px;
+			height: 250px;
+			margin:20px;
+			width:20%;
+			text-align: center;
+		}
+
+		.bottom{
+			border: black solid 4px;
+			width: 70%;
+			height:150px;
+			margin-left:180px;
+		}
+		h3{
+			margin-left: 5%;
+			margin-top: 5%;
+		}
+
+		.side{
+			border:black 4px solid;
+			width:10%;
+			height:60px;
+			margin-left: 250px;
+			text-align: center;
+			font-size: 30px;
+		}
+
+		.error{
+			color: red;
+		}
+		.success{
+			color: green;
+		}
+		.btn-warning{
+			margin-left:40%;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+		<h1>NINJA GOLD!!!</h1>
+		<h3>Your Gold:</h3>
+		<div class="side">{{request.session.total}}</div>
+		<div class="row">
+		    <div class="col-3-md">
+		    	<form action="ninja_gold/gold_here" method="POST">
+		    			{% csrf_token %} 
+		    		<h3> Farm</h3>
+		    		<p>(earns 10-20 golds)</p>
+		    		<button type="submit" name="name" value="farm" class="btn btn-success">Find gold!</button>
+		    	</form>
+		    </div>
+		    <div class="col-3-md">
+		    	<form action="ninja_gold/gold_here" method="POST">
+		    		{% csrf_token %}
+		    		<h3> Cave </h3>
+		    		<p>(earns 5-10 golds)</p>
+		    		<button type="submit" name="name" value="cave" class="btn btn-success">Find gold!</button>
+		    	</form>
+		    </div >
+		    <div class="col-3-md">
+		    	<form action="ninja_gold/gold_here" method="POST">
+		    		{% csrf_token %}
+		    		<h3> House</h3>
+		    		<p>(earns 2-5 golds)</p>
+		    		<button type="submit" name="name" value="house" class="btn btn-success">Find gold!</button>
+		    	</form>
+		    </div>
+		    <div class="col-3-md">
+		    	<form action="ninja_gold/gold_here" method="POST">
+		    		{% csrf_token %}
+		    		<h3> Casino</h3>
+		    		<p>(earns/takes 0-50 golds)</p>
+		    		<button type="submit" name="name" value="casino" class="btn btn-success">Find gold!</button>
+		    	</form>
+		    </div>
+	  	</div>
+	  	<h3>Activities:</h3>
+	  	<div class="bottom">
+	  		{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+	</div>
+
+	
+	  	<form action="ninja_gold/reset" method="POST">
+	  		{% csrf_token %} 
+	  		<button type="submit" name="submit" value="reset" class="btn btn-warning">RESET</button>
+	  	</form>
+	  
+</body>
+</html>
